@@ -43,7 +43,7 @@ jobs:
             echo "=========================================================="
 
             DEPLOY_PATH="SpringAPI_Session05"  
-            IMAGE_NAME="ghcr.io/nguyenquephong13062003/springapi_session05-pth-B260316"
+            IMAGE_NAME="ghcr.io/nguyenquephong13062003/springapi_session05-pth-b260316"
 
             # 1. Clone repository neu chua ton tai
             if [ ! -d "$DEPLOY_PATH" ]; then

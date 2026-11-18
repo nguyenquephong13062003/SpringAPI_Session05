@@ -2,7 +2,7 @@
 services:
 
   spring-api-session05-backend:
-    image: ghcr.io/nguyenquephong13062003/springapi_session05-pth-B260316:${IMAGE_TAG:-latest}
+    image: ghcr.io/nguyenquephong13062003/springapi_session05-pth-b260316:${IMAGE_TAG:-latest}
     container_name: spring-api-session05-backend
     restart: always
     ports:
