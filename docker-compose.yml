@@ -1,0 +1,36 @@
+
+services:
+
+  spring-api-session05-backend:
+    image: ghcr.io/nguyenquephong13062003/springapi_session05-pth-B260316:${IMAGE_TAG:-latest}
+    container_name: spring-api-session05-backend
+    restart: always
+    ports:
+      - "8888:8888"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://department-db:5432/db_jb_ioc_251229_ss5
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234$
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      db_jb_ioc_251229_ss5:
+        condition: service_healthy
+
+  db_jb_ioc_251229_ss5:
+    image: postgres:17-alpine
+    container_name: db_jb_ioc_251229_ss5
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234$
+      POSTGRES_DB: db_jb_ioc_251229_ss5
+    volumes:
+      - db_jb_ioc_251229_ss5-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d db_jb_ioc_251229_ss5"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  department-db-data:
